@@ -1,35 +1,41 @@
-![Crunchbutton](www/assets/images/facebook-like.png)
+### Screenshots
+![cb](https://user-images.githubusercontent.com/99601/86167101-5176a680-baec-11ea-88b5-8f61516927a7.png)
+![cb](https://user-images.githubusercontent.com/99601/86167128-5a677800-baec-11ea-868c-e825dc75dae7.png)
+
+![cockipt](https://user-images.githubusercontent.com/99601/86166826-d1e8d780-baeb-11ea-93ea-f4130c780fdf.png)
+
+-----
 
 [![Build Status](https://travis-ci.org/crunchbutton/crunchbutton.svg?branch=master)](https://travis-ci.org/crunchbutton/crunchbutton)
 
-For detailed info check out [the wiki](https://github.com/crunchbutton/crunchbutton/wiki).
 
 ---
 
-#### Local Setup
+## Local Setup
 
-1. Install mysql
-2. Import the `db/dump.sql`
-3. Run the migrate script using `php travis/dbmigrate.php`
-4. Create a file called `.env` with `DATABASE_URL` and `DEBUG` set to `1`
-5. Run `heroku local local`
-6. Open http://localhost:8000
-
+1. `docker-compose up --build`
+1. `./cli/install.sh`
 ---
 
-#### Standalone Deployment
+### Access
+#### Public
 
-Deploy cockpit on heroku
+http://crunchbutton.localtest.me/
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/crunchbutton/crunchbutton&env[THEME]=cockpit2&env[DATABASE_URL]=null&env[USE_ENCRYPTION_KEY]=true&env[ADMIN_LOGIN]=admin&env[ADMIN_PASSWORD]=password&env[ADMIN_NAME]=Super%20Admin)
 
-Deploy crunchbutton on heroku
+#### Admin area
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/crunchbutton/crunchbutton&env[THEME]=seven&env[DATABASE_URL]=null&env[USE_ENCRYPTION_KEY]=true&env[ADMIN_LOGIN]=admin&env[ADMIN_PASSWORD]=password&env[ADMIN_NAME]=Super%20Admin)
+http://admin.localtest.me/
 
----
+- user: `admin`
+- pass: `admin`
 
-#### License
-This Community Version is made available under Free Software Foundation's GNU AGPLv3. For the full content of the license, please visit https://www.gnu.org/licenses/agpl-3.0.html.
 
-If the restrictions placed by the license do not meet your needs, Enterprise Version licenses are available from http://ae.studio/.
+## License
+Copyright (c) 2020 Crunchbutton
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

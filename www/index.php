@@ -9,20 +9,21 @@
  * reguardless of what it is.
  *
  */
+error_reporting(E_ALL ^ ( E_STRICT | E_DEPRECATED | E_NOTICE ) );
 
-error_reporting(E_ALL ^ ( E_NOTICE | E_STRICT | E_DEPRECATED ) );
+putenv('DEBUG=true');
+
 ini_set('display_errors',true);
 set_time_limit(100);
 ini_set('zlib.output_compression','On');
 ini_set('zlib.output_compression_level',9);
-
-
 
 // routing config for built in web server. we only use this for travis temporarily
 if (function_exists('php_sapi_name') && php_sapi_name() == 'cli-server') {
 	$path = pathinfo($_SERVER['SCRIPT_FILENAME']);
 
 	$file = substr($_SERVER['SCRIPT_NAME'],1);
+	
 	$allowed = ['scss','php'];
 	if (file_exists($file) && !in_array($path['extension'], $allowed)) {
 
@@ -38,9 +39,21 @@ if (function_exists('php_sapi_name') && php_sapi_name() == 'cli-server') {
 }
 
 
+$file = getcwd() . $_SERVER['DOCUMENT_URI'];
+if (file_exists($file)) {
+	$path = pathinfo($file);
+	$allowed = ['gif','png', 'jpg', 'jpeg', 'mp3', 'ico', 'svg', 'wav', 'js', 'css', 'eot', 'ttf', 'woff'];
+	if (in_array($path['extension'], $allowed)) {
+		header("Content-Type:" . mime_content_type($file));
+    readfile($file);
+		exit;
+	}
+}
+
 if (isset($_REQUEST['__url']) && $_REQUEST['__url'] == 'index.php') {
 	$_REQUEST['__url'] = '';
 }
+
 // no reason to pass __url
 if (!$_REQUEST['__url']) {
 	$request = explode('?', $_SERVER['REQUEST_URI'], 2)[0];
@@ -75,9 +88,10 @@ require_once '../include/crunchbutton.php';
 if ($_ENV['DEBUG']) {
 	error_log('>> DISPLAYING PAGE...');
 }
+$page = ltrim($_SERVER['DOCUMENT_URI'], '/');
 
-
-Cana::app()->displayPage();
+Cana::app()->buildPages($page);
+Cana::app()->displayPage($page);
 
 if ($_ENV['DEBUG']) {
 	register_shutdown_function(function() {

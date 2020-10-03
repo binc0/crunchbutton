@@ -2766,7 +2766,7 @@ sup {
 	line-height: 1.4em;
 }
 
-.no-init .hide-before-init {
+.no-init {
 	display: none !important;
 }
 
@@ -4711,3 +4711,7 @@ textarea {
 	.giftcard-value{
 		font-weight: 100;
 	}
+
+.mfp-hide {
+	display: none !important; 
+}
